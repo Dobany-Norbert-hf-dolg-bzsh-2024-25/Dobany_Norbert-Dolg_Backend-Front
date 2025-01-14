@@ -1,0 +1,39 @@
+<div *ngIf="!error;else err" class="container">
+
+    <div class="row fw-bold my-3">
+      <div *ngFor="let data of datas" class="col">
+        {{data.text}}
+      </div> 
+      <div class="col">
+        Actions
+      </div>
+      </div>
+   
+  
+    <div  class="row my-1">
+      <div *ngFor="let data of datas" class="col">
+        <input [(ngModel)]="newProduct[data.key]" [type]="data.type" class="form-control">
+        
+      </div>
+      <div class="col">
+        <button (click)="postProduct()" type="button" class="btn btn-primary btn-sm">Add</button>     
+      </div>
+    </div>
+  
+    <div *ngFor="let product of products" class="row my-1">
+      <div *ngFor="let data of datas" class="col">
+        <input [(ngModel)]="product[data.key]" [type]="data.type" class="form-control">
+      </div>
+      <div class="col">
+        <button (click)="saveProduct(product)" type="button" class="btn btn-primary btn-sm">Update</button>
+        <button (click)="deleteProduct(product)" type="button" class="ms-3 btn btn-secondary btn-sm">Delete</button>
+      </div>
+    </div>
+   
+  
+  </div>
+  <ng-template #err>
+    <div class="alert alert-danger" role="alert">
+      {{errorText}}
+    </div>
+  </ng-template>
